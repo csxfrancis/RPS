@@ -24,6 +24,32 @@ static int wc = 0;
 	1 you win
 	-1 you tied
 ***/
+
+
+
+
+/**
+ This will check to see if you won the game and 
+ update UI elements based of this.
+ */
+public static void checkPlay(int res,JLabel jl,JLabel wins)
+{
+	if(res == 1)
+	{
+		wc++;
+		jl.setText("you won");
+		wins.setText("Wins : " + wc);
+	}
+	else if(res == 0)
+	{
+		jl.setText("You lost");
+	}
+	else if(res ==  -1)
+	{
+		jl.setText("You tied");
+	}
+
+}
 public static int playRPS(String hand,JLabel cpr)
 {
 	Random r = new Random();
@@ -110,41 +136,15 @@ public static void main(String args[])
 		{
 			jl.setText("You Played Rock");
 			int res = playRPS("rock",cpr);
-			if(res == 1)
-			{
-				wc++;
-				jl.setText("you won");
-				wins.setText("Wins : " + wc);
-			}
-			else if(res == 0)
-			{
-				jl.setText("You lost");
-			}
-			else if(res ==  -1)
-			{
-				jl.setText("You tied");
-			}
-		}
+			checkPlay(res,jl,wins);
+					}
 	});
 	paper.addActionListener(new ActionListener() {
 		public void actionPerformed(ActionEvent a)
 		{
 			jl.setText("You Played Paper");
 			int res = playRPS("paper",cpr);
-			if(res == 1)
-			{
-				wc++;
-				jl.setText("you won");
-				wins.setText("Wins : " + wc);
-			}
-			else if(res == 0)
-			{
-				jl.setText("You lost");
-			}
-			else if(res ==  -1)
-			{
-				jl.setText("You tied");
-			}
+			checkPlay(res,jl,wins);
 		}
 	});
 	scizzor.addActionListener(new ActionListener() {
@@ -152,21 +152,7 @@ public static void main(String args[])
 		{
 			jl.setText("You Played Scissor");
 			int res = playRPS("scissor",cpr);
-			if(res == 1)
-			{
-				jl.setText("you won");
-				wc++;
-				wins.setText("Wins : " + wc);
-			}
-			else if(res == 0)
-			{
-				jl.setText("You lost");
-				
-			}
-			else if(res ==  -1)
-			{
-				jl.setText("You tied");
-			}
+			checkPlay(res,jl,wins);
 		}
 	});
 	cp.add(rock);
